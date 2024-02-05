@@ -45,3 +45,13 @@ export async function updateUser ({
     }
 
 }
+
+export async function fetchUser (userId : string){
+    connectToDB();
+
+    try {
+        return await User.findOne({id: userId});
+    } catch (error: any) {
+        console.log(`error fetching user data: ${error.message}`)
+    }
+}
