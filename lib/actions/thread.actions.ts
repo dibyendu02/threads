@@ -67,3 +67,77 @@ export async function fetchPosts ( pageNumber: number, PerPagePost: number){
     return { posts, isNext };
 
 }
+
+export async function fetchThread (id : string) {
+    connectToDB();
+    try {
+        //populate by community
+        const thread = await Thread.findById(id)
+        .populate({
+            path: 'author',
+            model: User,
+            select: "_id id image name"
+        })
+        .populate({
+            path: "children", // Populate the children field
+            populate: [
+              {
+                path: "author", // Populate the author field within children
+                model: User,
+                select: "_id id name parentId image", // Select only _id and username fields of the author
+              },
+              {
+                path: "children", // Populate the children field within children
+                model: Thread, // The model of the nested children (assuming it's the same "Thread" model)
+                populate: {
+                  path: "author", // Populate the author field within nested children
+                  model: User,
+                  select: "_id id name parentId image", // Select only _id and username fields of the author
+                },
+              },
+            ],
+        })
+        .exec();        
+
+        return thread;
+    } catch (error: any) {
+        console.error("Error while fetching thread:", error);
+        throw new Error(`failed to fetch thread: ${error.message}`)
+    }
+}
+
+export async function addCommentToThread(
+    userId: string,
+    threadId: string,
+    commentText: string,
+    pathname: string
+){
+    connectToDB();
+
+    try {
+        const originalThread = await fetchThread(threadId);
+
+        //create new thread
+        const commentThread = new Thread({
+            text: commentText,
+            author: userId,
+            parentId: threadId,
+        });
+
+        //save new thread
+        const savedCommentThread = await commentThread.save();
+
+        //update original
+        originalThread.children.push(savedCommentThread._id);
+
+        //save it
+        await originalThread.save();
+
+        revalidatePath(pathname);
+    } catch (error: any) {
+        throw new Error(`failed to add comment: ${error.message}`)
+    }
+
+    
+
+}

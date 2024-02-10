@@ -26,7 +26,6 @@ import { createThread } from "@/lib/actions/thread.actions";
 
 const PostThread = ({userId}:{userId: string}) => {
 
-    console.log(userId)
 
   const router = useRouter();
   const pathname = usePathname();
