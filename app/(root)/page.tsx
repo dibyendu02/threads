@@ -6,7 +6,24 @@ export default async function Home() {
   const result = await fetchPosts(1, 10);
 
   //console.log(result.posts);
-  const user = await currentUser();
+  // const user = await currentUser();
+
+  // Set a timeout for the currentUser function
+  const userPromise = new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      reject(new Error('Timeout while fetching current user'));
+    }, 5000); // Adjust the timeout duration as needed (in milliseconds)
+
+    currentUser().then(user => {
+      clearTimeout(timeout);
+      resolve(user);
+    }).catch(err => {
+      clearTimeout(timeout);
+      reject(err);
+    });
+  });
+
+  const user = await userPromise;
 
   return (
     <>
