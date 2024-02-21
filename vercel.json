@@ -1,5 +1,9 @@
 {
-    "api": {
-        "timeout": 30
+    "functions": {
+      "api": {
+        "runtime": "nodejs12.x",
+        "memory": 512,
+        "maxDuration": 30
+      }
     }
-}
+  }
