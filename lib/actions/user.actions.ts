@@ -136,3 +136,28 @@ export async function fetchUserPost (userId : string) {
         console.log(`error fetching user's thread data: ${error.message}`)
     }
 }
+
+export async function getActivity (userId : string){
+    connectToDB();
+    try {
+        const userThreads = await Thread.find({author: userId});
+
+        const threadChildrenIds = userThreads.reduce((acc, userThread) => {
+            return acc.concat(userThread.children);
+        },[]);
+
+        const replies = await Thread.find({
+            _id: {$in: threadChildrenIds},
+            author: {$ne: userId}
+        }).populate({
+            path: 'author',
+            model: User,
+            select: "name image _id"
+        })
+
+        return replies;
+
+    } catch (error:any) {
+        throw new Error(`failed to fetch user activity ${error.message}`)
+    }
+}
