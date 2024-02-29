@@ -17,7 +17,7 @@ export async function createThread (
         text, author, communityId, path
     } : Props
 ){
-    connectToDB();
+    await connectToDB();
 
     try {
         const createdThread = await Thread.create({
@@ -38,7 +38,7 @@ export async function createThread (
 }
 
 export async function fetchPosts ( pageNumber: number, PerPagePost: number){
-    connectToDB();
+    await connectToDB();
 
     //calculate skip amount
     const skipAmount = (pageNumber - 1) * PerPagePost;
@@ -71,7 +71,7 @@ export async function fetchPosts ( pageNumber: number, PerPagePost: number){
 }
 
 export async function fetchThread (id : string) {
-    connectToDB();
+    await connectToDB();
     try {
         //populate by community
         const thread = await Thread.findById(id)
@@ -114,7 +114,7 @@ export async function addCommentToThread(
     commentText: string,
     pathname: string
 ){
-    connectToDB();
+    await connectToDB();
 
     try {
         const originalThread = await fetchThread(threadId);

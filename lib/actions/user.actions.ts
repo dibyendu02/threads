@@ -25,7 +25,7 @@ export async function updateUser ({
     path,
 } : Props
 ) : Promise<void> {
-    connectToDB();
+    await connectToDB();
 
     try {
         await User.findOneAndUpdate(
@@ -50,7 +50,7 @@ export async function updateUser ({
 }
 
 export async function fetchUser (userId : string){
-    connectToDB();
+    await connectToDB();
 
     try {
         return await User.findOne({id: userId});
@@ -72,7 +72,7 @@ export async function fetchAllUsers ({
     pageSize? : number,
     sortBy? : SortOrder,
 }) {
-    connectToDB();
+    await connectToDB();
     try {
         //calculate skip amount
         const skipAmount = (pageNumber - 1) * pageSize;
@@ -111,7 +111,7 @@ export async function fetchAllUsers ({
 }
 
 export async function fetchUserPost (userId : string) {
-    connectToDB();
+    await connectToDB();
 
     try {
         const threads = await User.findOne({id: userId})
@@ -138,7 +138,7 @@ export async function fetchUserPost (userId : string) {
 }
 
 export async function getActivity (userId : string){
-    connectToDB();
+    await connectToDB();
     try {
         const userThreads = await Thread.find({author: userId});
 
