@@ -8,17 +8,17 @@ import { redirect } from "next/navigation";
 const page = async ({ params }: { params: { id: string } }) => {
   if (!params.id) return null;
 
-  const user = await currentUser();
-  if (!user) return null; // to avoid typescript warnings
+  // const user = await currentUser();
+  // if (!user) return null; // to avoid typescript warnings
 
-  const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  // const userInfo = await fetchUser(user.id);
+  // if (!userInfo?.onboarded) redirect("/onboarding");
 
   const thread = await fetchThread(params.id);
 
   return (
     <section className="relative text-white">
-      <div className=" ">
+      {/* <div className=" ">
         <ThreadCard
           key={thread._id}
           id={thread._id}
@@ -53,7 +53,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             isComment
           />
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

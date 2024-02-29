@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
         <html lang="en">
             <body className={inter.className}>
               <Topbar/>
@@ -40,6 +40,6 @@ export default function RootLayout({
               <Bottombar/> 
             </body>
         </html>
-    </ClerkProvider>
+    // </ClerkProvider>
   )
 }

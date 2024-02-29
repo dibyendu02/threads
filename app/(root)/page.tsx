@@ -6,7 +6,7 @@ export default async function Home() {
   const result = await fetchPosts(1, 10);
 
   //console.log(result.posts);
-  const user = await currentUser();
+  // const user = await currentUser();
 
   // Set a timeout for the currentUser function
   // const userPromise = new Promise((resolve, reject) => {
@@ -38,7 +38,7 @@ export default async function Home() {
           </div>
         ) : (
           <>
-            {result.posts.map((post) => (
+            {/* {result.posts.map((post) => (
               <ThreadCard
                 key={post._id}
                 id={post._id}
@@ -50,7 +50,7 @@ export default async function Home() {
                 areatedAt={post.createdAt}
                 comments={post.children}
               />
-            ))}
+            ))} */}
           </>
         )}
       </section>

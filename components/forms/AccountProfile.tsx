@@ -31,15 +31,12 @@ import { Input } from "@/components/ui/input";
 import { userValidation } from "@/lib/validations/user";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
-import { useUploadThing } from "@/lib/uploadthing";
 import { isBase64Image } from "@/lib/utils";
 import { updateUser } from "@/lib/actions/user.actions";
 import { usePathname, useRouter } from "next/navigation";
 
 const AccountProfile = ({ user, btnTitle }: ProfileProps) => {
   const [files, setFiles] = useState<File[]>([]);
-
-  const { startUpload} = useUploadThing('media');
 
   const router = useRouter();
   const pathname = usePathname();
@@ -58,14 +55,14 @@ const AccountProfile = ({ user, btnTitle }: ProfileProps) => {
 
     const hasImageChnaged = isBase64Image(blob);
 
-    if (hasImageChnaged) {
-      const imgRes = await startUpload(files);
+    // if (hasImageChnaged) {
+      
 
-      //fileUrl doesnot works so used url
-      if (imgRes && imgRes[0].url) {
-        values.profile_photo = imgRes[0].url;
-      }
-    }
+    //   //fileUrl doesnot works so used url
+    //   if (imgRes && imgRes[0].url) {
+    //     values.profile_photo = imgRes[0].url;
+    //   }
+    // }
 
     //backend to update user profile
 

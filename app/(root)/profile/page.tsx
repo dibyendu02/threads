@@ -8,23 +8,23 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 const page = async () => {
-  const user = await currentUser();
-  if(!user) return null;
+  // const user = await currentUser();
+  // if(!user) return null;
 
-  const userInfo = await fetchUser(user.id);
-  if(!userInfo?.onboarded) redirect('/onboarding');
+  // const userInfo = await fetchUser(user.id);
+  // if(!userInfo?.onboarded) redirect('/onboarding');
 
   return (
     <section>
-      <ProfileHeader
+      {/* <ProfileHeader
         accountId = {userInfo.id}
         authUserId = {user.id}
         name = {userInfo.name}
         username = {userInfo.username}
         imageUrl = {userInfo.image}
         bio = {userInfo.bio}
-      />
-      <div className="mt-10">
+      /> */}
+      {/* <div className="mt-10">
           <Tabs defaultValue="threads" className="w-full" >
             <TabsList className="tab">
               {profileTabs.map((tab) => (
@@ -54,7 +54,7 @@ const page = async () => {
               </TabsContent>
             ))}
           </Tabs>
-      </div>
+      </div> */}
     </section>
   )
 }

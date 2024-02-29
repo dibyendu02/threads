@@ -4,18 +4,18 @@ import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const page = async () => {
-  const user = await currentUser();
-  if (!user) return null;
+  // const user = await currentUser();
+  // if (!user) return null;
 
-  const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  // const userInfo = await fetchUser(user.id);
+  // if (!userInfo?.onboarded) redirect("/onboarding");
 
-  const results = await fetchAllUsers({
-    userId: user.id,
-    searchString: "",
-    pageNumber: 1,
-    pageSize: 20
-  });
+  // const results = await fetchAllUsers({
+  //   userId: user.id,
+  //   searchString: "",
+  //   pageNumber: 1,
+  //   pageSize: 20
+  // });
 
   //console.log(results.users);
 
@@ -26,7 +26,7 @@ const page = async () => {
       {/* implement search bar */}
 
 
-      <div className="flex flex-col gap-6">
+      {/* <div className="flex flex-col gap-6">
         {results.users.map((result) => (
             <UserCard
               name={result.name}
@@ -37,7 +37,7 @@ const page = async () => {
               accountType="User"
             />
         ))}
-      </div>
+      </div> */}
       
     </section>
   );

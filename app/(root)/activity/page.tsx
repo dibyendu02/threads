@@ -6,13 +6,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const page = async () => {
-  const user = await currentUser();
-  if (!user) return null;
+  // const user = await currentUser();
+  // if (!user) return null;
 
-  const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  // const userInfo = await fetchUser(user.id);
+  // if (!userInfo?.onboarded) redirect("/onboarding");
 
-  const activities = await getActivity(userInfo._id);
+  // const activities = await getActivity(userInfo._id);
 
   //console.log(userInfo._id)
 
@@ -20,7 +20,7 @@ const page = async () => {
     <section>
       <h3 className="head-text mb-10">Activity</h3>
       
-      <section className="mt-10 flex flex-col gap-6">
+      {/* <section className="mt-10 flex flex-col gap-6">
         {activities.length > 0 ? (
           <>
             {activities.map((activity) => (
@@ -44,7 +44,7 @@ const page = async () => {
             ))}
           </>) : <p className="!text-base-regular text-light-3">No activity yet</p>
         }
-      </section>
+      </section> */}
     </section>
   )
 }

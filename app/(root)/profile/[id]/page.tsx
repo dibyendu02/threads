@@ -8,15 +8,15 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 const page = async ({params} : {params: {id:string}}) => {
-  const user = await currentUser();
-  if(!user) return null;
+  // const user = await currentUser();
+  // if(!user) return null;
 
-  const userInfo = await fetchUser(params.id);
-  if(!userInfo?.onboarded) redirect('/onboarding');
+  // const userInfo = await fetchUser(params.id);
+  // if(!userInfo?.onboarded) redirect('/onboarding');
 
   return (
     <section>
-      <ProfileHeader
+      {/* <ProfileHeader
         accountId = {userInfo.id}
         authUserId = {user.id}
         name = {userInfo.name}
@@ -54,7 +54,7 @@ const page = async ({params} : {params: {id:string}}) => {
               </TabsContent>
             ))}
           </Tabs>
-      </div>
+      </div> */}
     </section>
   )
 }

@@ -12,7 +12,7 @@ const Topbar = () => {
         <h1 className='max-xs:hidden font-semibold'>Threads</h1>
       </Link>
 
-      <div className="flex gap-4 items-center">
+      {/* <div className="flex gap-4 items-center">
         <SignedIn>
           <div className='block md:hidden'>
             <SignOutButton>
@@ -28,7 +28,7 @@ const Topbar = () => {
           }}
           />
         </SignedIn>
-      </div>
+      </div> */}
       
     </nav>
   )
