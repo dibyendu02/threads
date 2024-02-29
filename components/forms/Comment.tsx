@@ -17,7 +17,6 @@ import { Input } from "@/components/ui/input";
 import { userValidation } from "@/lib/validations/user";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
-import { useUploadThing } from "@/lib/uploadthing";
 import { isBase64Image } from "@/lib/utils";
 import { updateUser } from "@/lib/actions/user.actions";
 import { usePathname, useRouter } from "next/navigation";
